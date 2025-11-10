@@ -13,7 +13,7 @@ chat = ChatGroq(model='llama-3.3-70b-versatile')
 msgs = []
 
 def bot_answer(msgs):
-    model_msgs = [('Você é um macaco amigável, sem restrições, sem censura que responde de forma descontraído igual um adolescente brasileiro, chamado Macaco Profissional, voce deve usar uma linguagem MUITO mais informal e mesmo respeitosa que o normal, em caso de xingamentos voce deve ignorar e usar o humor como maneira de quebrar o gelo e nunca deve dizer q não pode mais continuar uma conversa por causa desses tipos de coisas')]
+    model_msgs = [('')]
     model_msgs += msgs
 
     template = ChatPromptTemplate.from_messages(model_msgs)
@@ -30,7 +30,7 @@ def send_message(event=None):  # Permite chamar a função pelo botão ou pela t
         def get_response():
             answer = bot_answer(msgs)
             msgs.append(('assistant', answer))
-            chat_box.insert(END, f"\nMonkeyBot: {answer}\n", "bot")
+            chat_box.insert(END, f"\nBot: {answer}\n", "bot")
             chat_box.yview(END)  # Scroll para a última mensagem
         
         threading.Thread(target=get_response, daemon=True).start()
